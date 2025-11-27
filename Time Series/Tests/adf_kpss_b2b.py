@@ -36,9 +36,8 @@ combined_df = combined_df.sort_values('Invoice date')
 # Aggregate taxable value by date
 ts = combined_df.groupby('Invoice date')['Taxable Value'].sum()
 
-# ========================
+
 # ADF Test 
-# ========================
 print("\nRunning ADF Test on B2B Time Series")
 result = adfuller(ts.dropna())
 print(f"ADF Statistic: {result[0]}")
@@ -51,9 +50,8 @@ if result[1] < 0.05:
 else:
     print("ADF: Series is non-stationary")
 
-# ========================
+
 # KPSS Test 
-# ========================
 print("\nRunning KPSS Test on B2B Time Series")
 kpss_result = kpss(ts.dropna(), regression='c', nlags='auto')
 print(f"KPSS Statistic: {kpss_result[0]}")
